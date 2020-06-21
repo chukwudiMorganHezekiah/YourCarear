@@ -5,17 +5,10 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
-        <form action="" class="navbar-form  form-inline" method="">
-            <div class="form-group">
-                <input type="text" placeholder="Search Jobs" class="px-5 form-control">
+<div>
+    <Navbarform />
 
-            </div>
-            <div class="form-group">
-                <input type="submit" placeholder="Search Jobs" class="ml-1 btn btn-primary form-control">
-
-            </div>
-
-        </form>
+</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>

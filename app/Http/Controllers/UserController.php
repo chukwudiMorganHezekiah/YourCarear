@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +22,7 @@ class UserController extends Controller
 
             $select_user_profile_image=\App\Profile::all()->where('user_id',$request->user_id);
 
-            
+
             return $select_user_profile_image;
 
 

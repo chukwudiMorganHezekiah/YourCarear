@@ -88,7 +88,7 @@
 
                             @foreach($companies as $company)
                             <div class="p-2 jumbotron  m-2 d-flex">
-                                <img src="./storage/company_logos/{{ $company->company_logo }}" class="rounded-circle" style="width:30px">
+                                <img src="./storage/company_logos/{{ $company->company_logo }}" class="rounded-circle" style="width:30px;height:30px;">
                                 <span class="ml-3">{{ $company->company_name }}</span>
                             </div>
 

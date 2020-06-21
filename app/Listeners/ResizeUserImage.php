@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Intervention\Image\Facades\Image;
 
-class ResizeUserImage implements ShouldQueue
+class ResizeUserImage 
 {
     /**
      * Create the event listener.
@@ -30,6 +30,6 @@ class ResizeUserImage implements ShouldQueue
         //
         $image=Image::make(public_path('/storage/profile_images/'.$event->data))->fit(250,250);
         $saved=$image->save();
-        
+
     }
 }

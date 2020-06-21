@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class MyTests extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -27,7 +27,9 @@ class ExampleTest extends TestCase
         $this->actingAs(factory(\App\User::class)->create());
 
         $response=$this->get('/home');
-        $response->assertOk();
+
+        $response->assertRedirect('/home');
+
 
     }
 

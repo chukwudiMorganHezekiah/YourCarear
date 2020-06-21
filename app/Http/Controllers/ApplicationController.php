@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Application;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 
 
 

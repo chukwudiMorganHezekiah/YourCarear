@@ -1,14 +1,20 @@
 <?php
+use Illuminate\Support\Facades\Cache;
 
 
 Route::get('/', function () {
     $user=auth()->user()->id;
     $userInterest=\App\User::find($user)->profile->industryInterest;
     $companies=\App\Company::where('company_Industry','LIKE','%'.$userInterest.'%')->paginate(5);
+    $user=auth()->user()->id;
+   /* $company_image_cache=Cache::remember('company_logo', now()->addSecond(), function () use($user) {
+        return auth()->user()->company->logo;
+
+    }); */
     $jobs=\App\Job::where('job_Industry','LIKE','%'.$userInterest.'%')->paginate(1);;
 
 
-    return view('home',compact(['companies','jobs']));
+    return view('home',compact(['companies','jobs',]));
 })->middleware('auth');
 
 Auth::routes();

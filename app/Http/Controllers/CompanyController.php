@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CompanyController extends Controller
 {
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +44,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         //
-        //$this->authorize('create',new \App\Company);
+        $this->authorize('create',new \App\Company);
 
         $data=$request->validate([
             'company_name'=>'required|min:3',
@@ -54,6 +59,7 @@ class CompanyController extends Controller
             $company_logoxt=$request->file('company_logo')->getClientOriginalExtension();
             $company_logonamewithoutExtension=pathInfo($company_logonamewithExtension,PATHINFO_FILENAME);
             $company_logonametostore=$company_logonamewithoutExtension.time().'.'.$company_logoxt;
+
             $request->file('company_logo')->storeAs('public/company_logos/',$company_logonametostore);
 
         }
@@ -61,7 +67,13 @@ class CompanyController extends Controller
             'user_id'=>auth()->user()->id,
             'company_logo'=>$company_logonametostore,
         ],$data);
+
         $saved=\App\Company::create($datanow);
+        $saved->update([
+            'company_logo'=>$company_logonametostore
+
+        ]);
+        
 
         event(new \App\Events\newCompanyCreatedEvent($saved));
         session()->flash('company_created',"company_created successfully");

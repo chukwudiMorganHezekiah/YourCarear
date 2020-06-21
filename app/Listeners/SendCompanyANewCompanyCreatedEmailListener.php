@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendCompanyANewCompanyCreatedEmailListener implements ShouldQueue
+class SendCompanyANewCompanyCreatedEmailListener //implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -28,8 +28,8 @@ class SendCompanyANewCompanyCreatedEmailListener implements ShouldQueue
     public function handle(newCompanyCreatedEvent $event)
     {
         //
-        $user=\App\User::find($event->data->user_id)->first();
-        dd($user->email);
-        Mail::to($user->email)->send(new \App\Mail\newCompanyCreatedEvent($user));
+       // $user=\App\User::find($event->data->user_id)->first();
+
+       // Mail::to($user->email)->send(new \App\Mail\newCompanyCreatedEvent($user));
     }
 }

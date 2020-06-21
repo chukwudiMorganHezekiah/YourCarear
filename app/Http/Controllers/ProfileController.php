@@ -6,6 +6,7 @@ use App\AboutUser;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Events\NewUserCreatedEvent;
+use Illuminate\Support\Facades\Cache;
 
 class ProfileController extends Controller
 {
@@ -72,7 +73,7 @@ class ProfileController extends Controller
             'cv'=>$cvnametostore,
             'user_id'=>auth()->user()->id,
         ]);
-        
+
 
         event(new \App\Events\UserUpdatedProfileImageEvent($profilenametostore));
         return redirect('/');

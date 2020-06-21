@@ -39,6 +39,9 @@ Vue.component('applymodal', require('./components/applymodal.vue').default);
 //coverletter
 Vue.component('coverletter', require('./components/coverletter.vue').default);
 
+//Navbarform
+Vue.component('Navbarform', require('./components/Navbarform.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

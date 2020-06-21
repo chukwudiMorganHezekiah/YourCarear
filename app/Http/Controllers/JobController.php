@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Job;
 use Illuminate\Http\Request;
 use DB;
-
+use Illuminate\Support\Facades\Cache;
 class JobController extends Controller
 {
+
+    public function __construct()
+    {
+
+
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +25,7 @@ class JobController extends Controller
         //
         $this->authorize('create',\App\Job::class);
         $user=auth()->user()->id;
+
         //$jobs=\App\Job::where('user_id',$user)->where()->get();
        // $jobs=\App\Job::select(\DB::raw(" job_title,job_description"))
         //->distinct('job_title')
@@ -30,7 +38,7 @@ class JobController extends Controller
 //dd($jobs->count());
 
 
-        return view('job.index',compact('jobs'));
+        return view('job.index',compact('jobs',));
     }
 
     /**
@@ -42,6 +50,21 @@ class JobController extends Controller
     {
         //
         return view("loggedLayouts.post_a_job");
+    }
+
+    public function search($value){
+
+        $search_result=DB::select("SELECT * FROM jobs WHERE job_Industry LIKE '%$value%' OR job_title LIKE '%$value%' OR job_Industry LIKE '%$value%'");
+        $count=count($search_result);
+
+        if($count > 0)
+        {
+            return response()->json($search_result,200);
+        }else{
+            return response()->json('No result found',200);
+
+        }
+        return response()->json($search_result,200);
     }
 
     /**
@@ -94,7 +117,7 @@ class JobController extends Controller
     {
         //
         $applications=\App\Application::where('job_id',$job->id)->get();
-        
+
         return view('job.edit',compact('applications'));
     }
 

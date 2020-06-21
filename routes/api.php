@@ -19,5 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post("select_profile_image","UserController@index");
 
+Route::get('usingreact',function(){
+    return "goon";
+});
 Route::post("submitjob","ApplicationController@store");
+
+
+Route::get("search_jobs/{value}","JobController@search");
 
